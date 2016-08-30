@@ -13,14 +13,19 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 
+import java.util.UUID;
+
 public class CrimeFragment extends Fragment {
     private Crime mCrime;
+    public static String EXTRA_ID =
+            "com.froist_inc.josh.criminalintent.crime_list_fragment.EXTRA_ID";
 
     @Override
     public void onCreate( Bundle savedInstanceState )
     {
         super.onCreate( savedInstanceState );
-        mCrime = new Crime();
+        UUID position = (UUID) getArguments().getSerializable(EXTRA_ID);
+        mCrime = CrimeLab.get(getActivity()).getCrime(position);
     }
 
     @Nullable
@@ -29,8 +34,9 @@ public class CrimeFragment extends Fragment {
                              @Nullable Bundle savedInstanceState )
     {
         final View view = inflater.inflate( R.layout.fragment_crime, container, false );
-        EditText editText = ( EditText ) view.findViewById( R.id.crime_title );
-        editText.addTextChangedListener( new TextWatcher() {
+        EditText titleView = (EditText) view.findViewById(R.id.crime_title);
+        titleView.setText(mCrime.getTitle());
+        titleView.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged( CharSequence s, int start, int count, int after )
             {
@@ -55,6 +61,7 @@ public class CrimeFragment extends Fragment {
         dateButton.setEnabled( false );
 
         CheckBox solvedCheckBox = ( CheckBox ) view.findViewById( R.id.crime_solved );
+        solvedCheckBox.setChecked(mCrime.isSolved());
         solvedCheckBox.setOnCheckedChangeListener( new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged( CompoundButton buttonView, boolean isChecked ) {
@@ -62,5 +69,14 @@ public class CrimeFragment extends Fragment {
             }
         });
         return view;
+    }
+
+    public static CrimeFragment newInstance(UUID id) {
+        Bundle extra = new Bundle();
+        extra.putSerializable(EXTRA_ID, id);
+
+        CrimeFragment newCrimeFragment = new CrimeFragment();
+        newCrimeFragment.setArguments(extra);
+        return newCrimeFragment;
     }
 }

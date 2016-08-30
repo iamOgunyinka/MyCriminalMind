@@ -1,17 +1,14 @@
 package com.froist_inc.josh.criminalintent;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -33,11 +30,9 @@ public class CrimeListFragment extends ListFragment {
     @Override
     public void onListItemClick( ListView l, View v, int position, long id )
     {
-        super.onListItemClick( l, v, position, id );
-        Crime crime = ( ( CrimeAdapter ) getListAdapter() ).getItem( position );
-        Log.d( TAG, crime.getTitle() + " was clicked" );
-        Toast.makeText( getContext(), crime.getTitle() + " was clicked",
-                Toast.LENGTH_SHORT ).show();
+        Intent intent = new Intent(getActivity(), CrimeActivity.class);
+        intent.putExtra(CrimeFragment.EXTRA_ID, mCrimes.get(position).getId());
+        startActivity(intent);
     }
 
     private class CrimeAdapter extends ArrayAdapter<Crime>
@@ -48,12 +43,10 @@ public class CrimeListFragment extends ListFragment {
         }
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
-
             if( convertView == null )
             {
                 convertView = getActivity().getLayoutInflater()
                         .inflate( R.layout.list_item_crimes, null );
-
             }
             Crime crime = getItem( position );
             TextView title = ( TextView ) convertView.findViewById(
