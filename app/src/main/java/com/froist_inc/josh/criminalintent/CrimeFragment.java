@@ -2,7 +2,9 @@ package com.froist_inc.josh.criminalintent;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -12,7 +14,6 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
-
 import java.util.UUID;
 
 public class CrimeFragment extends Fragment {
@@ -24,8 +25,8 @@ public class CrimeFragment extends Fragment {
     public void onCreate( Bundle savedInstanceState )
     {
         super.onCreate( savedInstanceState );
-        UUID position = (UUID) getArguments().getSerializable(EXTRA_ID);
-        mCrime = CrimeLab.get(getActivity()).getCrime(position);
+        UUID position = ( UUID ) getArguments().getSerializable( EXTRA_ID );
+        mCrime = CrimeLab.get( getActivity() ).getCrime( position );
     }
 
     @Nullable
@@ -58,7 +59,15 @@ public class CrimeFragment extends Fragment {
 
         Button dateButton = ( Button ) view.findViewById( R.id.crime_date );
         dateButton.setText( mCrime.getDate().toString() );
-        dateButton.setEnabled( false );
+        dateButton.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick( View v )
+            {
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                DialogFragment dialog = new DatePickerDialog();
+                dialog.show( fragmentManager, "dialog_date" );
+            }
+        });
 
         CheckBox solvedCheckBox = ( CheckBox ) view.findViewById( R.id.crime_solved );
         solvedCheckBox.setChecked(mCrime.isSolved());
@@ -71,12 +80,12 @@ public class CrimeFragment extends Fragment {
         return view;
     }
 
-    public static CrimeFragment newInstance(UUID id) {
+    public static CrimeFragment newInstance( UUID id ) {
         Bundle extra = new Bundle();
-        extra.putSerializable(EXTRA_ID, id);
+        extra.putSerializable( EXTRA_ID, id );
 
         CrimeFragment newCrimeFragment = new CrimeFragment();
-        newCrimeFragment.setArguments(extra);
+        newCrimeFragment.setArguments( extra );
         return newCrimeFragment;
     }
 }
