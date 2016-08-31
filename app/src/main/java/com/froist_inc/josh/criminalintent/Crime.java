@@ -39,10 +39,6 @@ public class Crime {
         return mId;
     }
 
-    public void setId(UUID mId) {
-        this.mId = mId;
-    }
-
     public String getTitle() {
         return mTitle;
     }

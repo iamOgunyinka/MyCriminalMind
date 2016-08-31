@@ -12,7 +12,7 @@ public class CrimeLab {
 
     private CrimeLab( Context context )
     {
-        mCrimes = new ArrayList<Crime>();
+        mCrimes = new ArrayList<>();
         mAppContext = context;
         for ( int i = 0; i < 100; i++ ) {
             Crime crime = new Crime();
