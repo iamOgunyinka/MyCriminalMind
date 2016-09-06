@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/menu_add_crime"
+        android:icon="@android:drawable/ic_menu_add"
+        android:title="@string/add_crime"
+        tools:ignore="AppCompatResource"
+        android:showAsAction="ifRoom|withText"
+        />
+    <item
+        android:id="@+id/menu_food"
+        android:icon="@android:drawable/ic_notification_overlay"
+        android:title="@string/app_name"
+        android:showAsAction="withText"
+        tools:ignore="AppCompatResource"
+    />
+</menu>

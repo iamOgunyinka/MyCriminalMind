@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/menu_context_delete_item"
+        android:icon="@android:drawable/ic_menu_delete"
+        android:title="@string/delete_crime"
+        />
+    <item
+        android:title="@string/hello_blank_fragment"
+        android:id="@+id/menu_context_just_testing"
+        android:icon="@android:drawable/ic_media_pause"
+        />
+</menu>

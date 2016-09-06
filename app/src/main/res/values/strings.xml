@@ -1,12 +1,15 @@
 <resources>
-    <string name="app_name">CriminalIntent</string>
+    <string name="app_name">Criminal Intent</string>
     <string name="title_activity_crime">CrimeActivity</string>
     <string name="crime_title_hint">Enter a title for the crime</string>
     <string name="crime_title_label">Title</string>
     <string name="crime_title">Crimes</string>
+    <string name="delete_crime">Delete crime(s)</string>
+    <string name="add_crime">Record new crime</string>
     <string name="crime_detail_label">Crime details</string>
     <string name="date_of_crime">Date Crime was committed</string>
     <string name="crime_solved_label">Solved</string>
+    <string name="take_picture">Take!</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

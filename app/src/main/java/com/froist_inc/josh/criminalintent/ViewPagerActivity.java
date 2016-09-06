@@ -18,7 +18,7 @@ public class ViewPagerActivity extends FragmentActivity
     @Override
     protected void onCreate( @Nullable Bundle savedInstanceState )
     {
-        super.onCreate(savedInstanceState);
+        super.onCreate( savedInstanceState );
         ViewPager viewPager = new ViewPager( this );
         viewPager.setId( R.id.viewPage );
         setContentView( viewPager );
